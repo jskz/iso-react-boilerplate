@@ -1,3 +1,9 @@
+.*
+!.babelrc
+!.gitattributes
+!.gitignore
+
 node_modules
 .DS_Store
 build
+static
