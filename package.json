@@ -1,7 +1,7 @@
 {
   "name": "iso-react-boilerplate",
   "version": "1.0.0",
-  "description": "Boilerplate for building isomorphic webapps with React.",
+  "description": "Boilerplate project for an isomorphic React app using Express and react-router.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
