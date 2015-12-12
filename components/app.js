@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import Navigation from './navigation'
 
 class App extends React.Component {
@@ -9,6 +10,14 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
+                <Helmet
+                    title="App Name"
+                    titleTemplate="App - %s"
+                    onChangeClientState={(newState) => console.log(newState)}
+                    script={[
+                        {"src": "/bundle.js", "type": "text/javascript"}
+                    ]} />
+
                 <h1>App Name</h1>
                 <Navigation />
 

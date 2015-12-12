@@ -5,6 +5,7 @@ import { renderToString } from 'react-dom/server'
 import { RoutingContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation'
 import createMemoryHistory from 'history/lib/createMemoryHistory'
+import Helmet from 'react-helmet'
 import routes from './routes'
 
 let server = http.createServer()
@@ -27,7 +28,23 @@ app.use((req, res) => {
         }
 
         let rendered = renderToString(<RoutingContext {...renderProps} />)
-        let bootstrapMarkup = `<!DOCTYPE html><html><head><script src="/bundle.js" type="text/javascript"></script></head><body><div id="origin">${rendered}</div></body></html>`
+        let head = Helmet.rewind()
+        let bootstrapMarkup = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            ${head.title.toString()}
+            ${head.meta.toString()}
+            ${head.link.toString()}
+            ${head.script.toString()}
+        </head>
+
+        <body>
+            <div id="origin">
+            ${rendered}
+            </div>
+        </body>
+        </html>`
 
         res.send(bootstrapMarkup)
     })
